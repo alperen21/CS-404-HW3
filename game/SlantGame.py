@@ -5,25 +5,32 @@ class SlantGame(Game):
     # def __init__(self) -> None:
     #     super().__init__(initial)
     
-    def actions(self, state):
+    def actions(self, state, player):
         allowed_actions = []
         for x, row in enumerate(state.grid):
-            for y, elem in row:
+            for y, elem in enumerate(row):
                 if elem != "\\" and elem != "/":
                     allowed_actions.append((x,y))
         
-        return allowed_actions
+
+        action_objects = list()
+        for action in allowed_actions:
+            action_objects.append(
+                Action(action, player)
+            )
+
+        return action_objects
 
     def result(self, board, action):
-        board = board.new(action)
+        board = self.move(board, action)
         player = board.to_move
         board.to_move = '\\' if player == "/" else '\\'
         
         board.score = self.score(board, action)
-        board = self.move(board, action)
         
         return board
-    def score(board : Board, action : Action):
+    
+    def score(self, board : Board, action : Action):
         score = 0
 
         x,y = action.cooordinates
@@ -40,17 +47,18 @@ class SlantGame(Game):
         for coordinate in affected_coordinates:
             x,y = coordinate
 
-            if board.constraints[x][y].value + 1 == board.constraints[x][y].intersection:
+            if board.constraints[x][y].value + 1 == board.constraints[x][y].intersections:
                 score += board.constraints[x][y].value
         
         return score
 
-    def move(board ,action):
+    def move(self, board ,action):
         action_coordinates = action.cooordinates
         action_mark = action.mark
         affected_coordinates = list()
         x,y = action_coordinates
-
+        board.grid[x][y] = action_mark
+        
         if action_mark == "/":
             affected_coordinates.append((x,y-1))
             affected_coordinates.append((x-1,y))
@@ -60,9 +68,11 @@ class SlantGame(Game):
         
         for coordinate in affected_coordinates:
             x,y = coordinate
-            board.constraints[x][y].intersection += 1
+            board.constraints[x][y].intersections += 1
 
-        board.grid[x][y] = action_mark
+        
+
+        return board
 
 
     def game_is_over(self, board : Board):
