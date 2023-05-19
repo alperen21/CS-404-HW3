@@ -1,5 +1,12 @@
+import copy 
+from board.Board import Board
+from game.SlantGame import SlantGame
+
 def main():
-    pass 
+    game = SlantGame()
+    board = Board()
+    board.initialize("input/input.txt")
+    
 
 if __name__ == "__main__":
     main()
