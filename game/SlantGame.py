@@ -1,5 +1,6 @@
 from game.game import Game
 from board.Board import Board, Constraint, Action
+from copy import deepcopy
 
 class SlantGame(Game):
     # def __init__(self) -> None:
