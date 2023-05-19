@@ -58,7 +58,7 @@ class SlantGame(Game):
         affected_coordinates = list()
         x,y = action_coordinates
         board.grid[x][y] = action_mark
-        
+
         if action_mark == "/":
             affected_coordinates.append((x,y-1))
             affected_coordinates.append((x-1,y))
@@ -76,7 +76,7 @@ class SlantGame(Game):
 
 
     def game_is_over(self, board : Board):
-        grid = self.board.grid
+        grid = board.grid
 
         for row in grid:
             for elem in row:

@@ -45,7 +45,13 @@ class Board:
 
         return new_board
     
-
+    def utility(self, board, player):
+        if player == "/":
+            return board.score
+        else:
+            return -board.score
+    
+    
     
     def __repr__(self) -> str:
         representation = ""

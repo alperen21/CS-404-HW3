@@ -1,3 +1,2 @@
-def player(search_algorithm):
-    """A game player who uses the specified search algorithm"""
-    return lambda game, state: search_algorithm(game, state)[1]
+def player(search_algorithm, player):
+    return lambda game, state: search_algorithm(game, state, player)[1]
