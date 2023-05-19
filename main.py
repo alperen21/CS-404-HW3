@@ -3,6 +3,7 @@ from board.Board import Board
 from game.SlantGame import SlantGame
 from game.Play import play_game
 from player.strategy.alpha_beta import search
+from player.strategy.human import human
 from player.Player import player
 
 def main():
@@ -14,7 +15,7 @@ def main():
     # print(action.cooordinates)
     # print(game.result(board, action))
     strategy = {
-        "/": player(search, "/"),
+        "/": player(human, "/"),
         "\\": player(search, "\\")
     }
     play_game(game, strategy, board).score
