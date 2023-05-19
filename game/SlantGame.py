@@ -25,7 +25,11 @@ class SlantGame(Game):
     def result(self, board, action):
         board = self.move(board, action)
         player = board.to_move
-        board.to_move = '\\' if player == "/" else '\\'
+
+        if board.to_move == "/":
+            board.to_move = '\\'
+        else:
+            board.to_move = "/"
         
         board.score = self.score(board, action)
         
