@@ -4,7 +4,7 @@ import math
 
 def min_value(game : SlantGame, state : Board, alpha : int, beta : int, player : str):
     if game.game_is_over(state):
-        return state.score, None
+        return state.utility(state, player), None
 
     v = -math.inf
     move = None
@@ -20,7 +20,7 @@ def min_value(game : SlantGame, state : Board, alpha : int, beta : int, player :
 
 def max_value(game : SlantGame, state : Board, alpha : int, beta : int, player : str):
     if game.game_is_over(state):
-        return state.score, None
+        return state.utility(state, player), None#state.score, None
 
     v = -math.inf
     move = None

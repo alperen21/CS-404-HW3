@@ -31,11 +31,11 @@ class SlantGame(Game):
         else:
             board.to_move = "/"
         
-        board.score = self.score(board, action)
+        board.score = self.score(board, action, player)
         
         return board
     
-    def score(self, board : Board, action : Action):
+    def score(self, board : Board, action : Action, player : str):
         score = 0
 
         x,y = action.cooordinates
@@ -55,6 +55,9 @@ class SlantGame(Game):
             if board.constraints[x][y].value + 1 == board.constraints[x][y].intersections:
                 score += board.constraints[x][y].value
         
+        if player == "\\":
+            score = (-1) * score
+
         return score
 
     def move(self, board ,action):
