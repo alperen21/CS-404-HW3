@@ -2,6 +2,8 @@ class Action:
     def __init__(self, coordinates : tuple, mark : str) -> None:
         self.cooordinates = coordinates
         self.mark = mark
+    def __repr__(self) -> str:
+        return f"({self.cooordinates[0]},{self.cooordinates[1]})"
 
 class Constraint():
     def __init__(self, value) -> None:
@@ -51,7 +53,7 @@ class Board:
         else:
             return -board.score
     
-    
+
     
     def __repr__(self) -> str:
         representation = ""
@@ -59,9 +61,9 @@ class Board:
         for line in self.grid:
             representation += "|" + str(line) +"|" + "\n"
         
-        representation += "\n"
-        for line in self.constraints:
-            representation += "|" + str(line) +"|" + "\n"
+        # representation += "\n"
+        # for line in self.constraints:
+        #     representation += "|" + str(line) +"|" + "\n"
         
         return representation
 
