@@ -8,7 +8,7 @@ def play_game(game : SlantGame, strategies : dict,  state : Board):
         player = state.to_move
         temp_state = deepcopy(state)
         move = strategies[player](game, state)
-        state.score += game.score(temp_state, move, player)
+        #state.score += game.score(temp_state, move, player)
         state = game.result(temp_state, move)
         
         print("score:", state.score)

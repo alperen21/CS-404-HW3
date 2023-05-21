@@ -22,7 +22,7 @@ class SlantGame(Game):
 
         return action_objects
 
-    def result(self, board, action):
+    def result(self, board : Board, action):
         board = self.move(board, action)
         player = board.to_move
 
@@ -30,8 +30,20 @@ class SlantGame(Game):
             board.to_move = '\\'
         else:
             board.to_move = "/"
-        
-        board.score = self.score(board, action, player)
+
+        affected_coordinates = list()
+        x,y = action.cooordinates
+        if player == "/":
+            affected_coordinates.append((x,y+1))
+            affected_coordinates.append((x+1,y))
+        else:
+            affected_coordinates.append((x+1,y+1))
+            affected_coordinates.append((x,y))
+
+        board.score += self.score(board, action, player)
+
+        for coordinates in affected_coordinates:
+            board.constraints[coordinates[0]][coordinates[1]].intersections += 1
         
         return board
     
