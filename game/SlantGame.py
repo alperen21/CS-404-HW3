@@ -43,16 +43,16 @@ class SlantGame(Game):
         affected_coordinates = list()
 
         if action_mark == "/":
-            affected_coordinates.append((x,y-1))
-            affected_coordinates.append((x-1,y))
+            affected_coordinates.append((x,y+1))
+            affected_coordinates.append((x+1,y))
         else:
-            affected_coordinates.append((x-1,y-1))
+            affected_coordinates.append((x+1,y+1))
             affected_coordinates.append((x,y))
         
         for coordinate in affected_coordinates:
             x,y = coordinate
 
-            if board.constraints[x][y].value + 1 == board.constraints[x][y].intersections:
+            if board.constraints[x][y].value == board.constraints[x][y].intersections + 1:
                 score += board.constraints[x][y].value
         
         if player == "\\":
