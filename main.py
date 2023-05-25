@@ -15,8 +15,9 @@ def main():
     # print(action.cooordinates)
     # print(game.result(board, action))
     strategy = {
+        
+        "\\": player(human, "\\"),
         "/": player(search, "/"),
-        "\\": player(human, "\\")
     }
     play_game(game, strategy, board).score
 

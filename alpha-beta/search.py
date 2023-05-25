@@ -3,9 +3,6 @@ import math
 infinity = math.inf
 
 def alphabeta_search(game, state):
-    """Search game to determine best action; use alpha-beta pruning.
-    As in [Figure 5.7], this version searches all the way to the leaves."""
-
     player = state.to_move
 
     def max_value(state, alpha, beta):
